@@ -38,7 +38,7 @@ export default function Thing(props) {
       //onPointerOver={(e) => console.log('hover')}
       //onPointerOut={(e) => console.log('unhover')}
     >
-      <planeGeometry args={[20, 20]} />
+      <planeGeometry args={[200, 200]} />
       <meshBasicMaterial
         attach="material"
         side={THREE.DoubleSide}

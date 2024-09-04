@@ -1,21 +1,27 @@
-import { useFrame, useThree } from "@react-three/fiber";
-import { useLayoutEffect, useRef } from "react";
-import { Vector3 } from "three";
+import { CameraControls } from "@react-three/drei";
+import { useEffect, useRef } from "react";
 
-export default function CustomCamera (props){
-  const { position } = props;
-  const [x, y, z] = position;
+export default function CustomCamera(props) {
+  const { cameraPosition, cameraTarget } = props;
   const ref = useRef();
-  const set = useThree((state) => state.set);
-  const size = useThree((state) => state.size);
 
-  useLayoutEffect(() => {
-    ref.current.position.set(x, y, z);
-    ref.current.aspect = size.width / size.height;
-    ref.current.updateMatrixWorld();
-    ref.current.updateProjectionMatrix();
-    set({ camera: ref.current });
-  }, [position, size]);
+  // useLayoutEffect
 
-  return <perspectiveCamera ref={ref} {...props} />;
-};
+  // useLayoutEffect(() => {
+  //   ref.current.position.set(x, y, z);
+  //   ref.current.moveTo(x, y, z, true)
+  //   ref.current.position.lerp(new Vector3(x, y, z), 0.01)
+  //   ref.current.aspect = size.width / size.height;
+  //   ref.current.updateMatrixWorld();
+  //   ref.current.updateProjectionMatrix();
+  //   set({ camera: ref.current });
+  // }, [cameraPosition, size]);
+
+  useEffect(() => {
+    // ref.current.moveTo(...cameraPosition, true)
+    // ref.current.setTarget(...cameraTarget, true)
+    ref.current.setLookAt(...cameraPosition, ...cameraTarget, true);
+  }, [cameraPosition]);
+
+  return <CameraControls ref={ref} {...props} enabled makeDefault />;
+}

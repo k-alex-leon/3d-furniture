@@ -9,7 +9,7 @@ import {
   Outline,
   Selection,
 } from "@react-three/postprocessing";
-import BoxMesh from "./assets/models/BoxMesh";
+import BoxMesh from "./components/models/BoxMesh";
 import { BlendFunction } from "postprocessing";
 import CustomCamera from "./components/CustomCamera";
 import { useStore } from "./hooks/useStore";
@@ -38,7 +38,7 @@ function Scene() {
         shadow-bias={-0.0001}
       />
       {/* <Sky azimuth={2} inclination={Math.PI * 0.5}/> */}
-      <Environment background files='./environment/sky.hdr'/>
+      <Environment background files="./environment/sky.hdr" />
 
       {/* POSITION SQUARE */}
       <HightlightMesh pos={highlightPosRef} />
@@ -50,8 +50,8 @@ function Scene() {
         sectionSize={1}
         followCamera
         fadeDistance={50}
-        cellColor={'#D6D5D5'}
-        sectionColor={'#D6D5D5'}
+        cellColor={"#D6D5D5"}
+        sectionColor={"#D6D5D5"}
         receiveShadow
       />
 
@@ -79,7 +79,7 @@ function Scene() {
 
       {/* CAMERA MOVEMENT */}
       <OrbitControls enabled={true} target={target} />
-      <CustomCamera position={camPosition} />
+      <CustomCamera cameraPosition={camPosition} cameraTarget={target}/>
     </>
   );
 }
