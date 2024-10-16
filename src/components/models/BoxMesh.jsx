@@ -3,10 +3,11 @@ import SelectableMesh from "../../components/SelectableMesh";
 import { useRef, useState } from "react";
 import { useStore } from "../../hooks/useStore";
 import Pallete from "../../components/pallete/Pallete";
+import Description from "../description/Description";
 
 export default function BoxMesh(props) {
   const boxRef = useRef();
-  const { color, position, viewpoint } = props;
+  const { color, position } = props.model;
   const [customColor, setCustomColor] = useState(null);
   const setCamPosition = useStore((state) => state.setCamPosition);
   const setTarget = useStore((state) => state.setTarget);
@@ -15,11 +16,13 @@ export default function BoxMesh(props) {
 
   const handlerOnDoubleClick = (e) => {
     e.stopPropagation();
-
-    // console.log(e);
+    
+    // get coords from event
     const { x, y, z } = e.point;
+    // change the cam position
     setCamPosition([x - 3, y + 2, z - 3]);
-    setTarget([x, y, z]);
+    // set the data model clicked
+    setTarget(props.model);
   };
 
   const handleOnClick = (e) => {
@@ -27,20 +30,24 @@ export default function BoxMesh(props) {
   };
 
   const handleChangeColorMaterial = (color) => {
-    setCustomColor(color)
-  }
+    setCustomColor(color);
+  };
 
   return (
     <group onDoubleClick={handlerOnDoubleClick} onClick={handleOnClick}>
-      <Pallete
+      {/* <Pallete
         isActive={isEdit}
         object={boxRef.current}
         onColorSelected={handleChangeColorMaterial}
-      />
+      /> */}
+
       <SelectableMesh>
         <mesh ref={boxRef} position={position} castShadow>
           <boxGeometry />
-          <meshStandardMaterial color={customColor ?? color} side={DoubleSide} />
+          <meshStandardMaterial
+            color={customColor ?? color}
+            side={DoubleSide}
+          />
         </mesh>
       </SelectableMesh>
     </group>

@@ -13,6 +13,7 @@ import BoxMesh from "./components/models/BoxMesh";
 import { BlendFunction } from "postprocessing";
 import CustomCamera from "./components/CustomCamera";
 import { useStore } from "./hooks/useStore";
+import { boxData } from "./data/objectsData";
 
 function Scene() {
   // cursor position on map
@@ -21,9 +22,6 @@ function Scene() {
   // custom camera position
   const camPosition = useStore((state) => state.camPosition);
   const target = useStore((state) => state.target);
-
-  // edit mode
-  const [isEditing, setEdit] = useState(false);
 
   return (
     <>
@@ -70,16 +68,19 @@ function Scene() {
         </EffectComposer>
 
         {/* MODELS */}
-        <BoxMesh position={[0, 0.5, 0]} viewpoint={[-3, 1, 3]} color={"red"} />
-
-        <BoxMesh position={[6, 0.5, 0]} viewpoint={[9, 1, 9]} color={"blue"} />
+        {boxData.map((model, inx) => {
+          return <BoxMesh key={inx} model={model} />;
+        })}
       </Selection>
 
       <Thing highlightPosRef={highlightPosRef} />
 
       {/* CAMERA MOVEMENT */}
-      <OrbitControls enabled={true} target={target} />
-      <CustomCamera cameraPosition={camPosition} cameraTarget={target}/>
+      <OrbitControls enabled={true} target={target.position} />
+      <CustomCamera
+        cameraPosition={camPosition}
+        cameraTarget={target.position}
+      />
     </>
   );
 }
