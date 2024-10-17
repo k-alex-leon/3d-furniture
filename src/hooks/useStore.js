@@ -6,5 +6,5 @@ export const useStore = create((set, get) => ({
     setCamPosition: (newPosition) =>
       set((state) => ({ camPosition: newPosition })),
     target: INITIAL_BOX_DATA,
-    setTarget: (target) => set((state) => ({ target })),
+    setTarget: (target) => set((state) => ({ target : target ?? INITIAL_BOX_DATA })),
   }));

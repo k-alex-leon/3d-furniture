@@ -2,8 +2,6 @@ import { DoubleSide } from "three";
 import SelectableMesh from "../../components/SelectableMesh";
 import { useRef, useState } from "react";
 import { useStore } from "../../hooks/useStore";
-import Pallete from "../../components/pallete/Pallete";
-import Description from "../description/Description";
 
 export default function BoxMesh(props) {
   const boxRef = useRef();

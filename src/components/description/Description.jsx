@@ -1,27 +1,19 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useStore } from "../../hooks/useStore";
 import "./Description.css";
 
 export default function Description() {
+  // asking if it exist a target (an object clicked)
   const target = useStore((state) => state.target);
-  const [isOpen, setOpen] = useState(true)
-
-  const handleOnCloseClick = (e) => {
-    setOpen(false)
-  }
 
   return (
-    <aside className={`description-container ${isOpen ? "is-visible" : "is-invisible"}`}>
+    <aside className={`description-container ${target.name !== '' ? "is-visible" : "is-invisible"}`}>
 
-        <picture onClick={handleOnCloseClick}>
-            <img src="./icons/close.png"/>
-        </picture>
       <div className="description-content">
-        <h3>Furniture Name</h3>
+        <h3>{target.name ?? 'Furniture name'}</h3>
         <hr />
         <p>
-          The hr element is used to create a horizontal rule or divider within
-          your HTML content. It visually separates sections of your page.
+          {target.description}
         </p>
       </div>
     </aside>
