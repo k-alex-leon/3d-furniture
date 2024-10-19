@@ -8,30 +8,12 @@ export default function SelectableMesh(props) {
   const { mesh, ...rest } = props;
 
   return (
-    <Select enabled={hovered}>
-      {mesh ? (
-        <primitive
-          object={mesh}
-          {...rest}
-          onPointerOver={(e) => {
-            hover(true);
-            e.stopPropagation();
-          }}
-          onPointerOut={() => hover(false)}
-        />
-      ) : (
-        <mesh
-          ref={ref}
-          {...rest}
-          onPointerOver={(e) => {
-            hover(true);
-            e.stopPropagation();
-          }}
-          onPointerOut={() => hover(false)}
-        >
-          {props.children}
-        </mesh>
-      )}
+    <Select
+      onPointerOver={() => hover(true)}
+      onPointerLeave={() => hover(false)}
+      enabled={hovered}
+    >
+      {props.children}
     </Select>
   );
 }
