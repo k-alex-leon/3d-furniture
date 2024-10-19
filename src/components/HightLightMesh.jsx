@@ -29,7 +29,7 @@ export default function HightlightMesh(props) {
     <mesh
       ref={ref}
       rotation-x={-Math.PI * 0.5}
-      onClick={(e) => handlerOnDoubleClick(e)}
+      onDoubleClick={(e) => handlerOnDoubleClick(e)}
     >
       <planeGeometry args={[1, 1]} />
       <meshBasicMaterial

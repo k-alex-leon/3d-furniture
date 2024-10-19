@@ -10,7 +10,7 @@ function App() {
     <div>
       <Description />
       <div className="canvas-scene">
-        <Canvas camera={{ position: [10, 10, 10], fov: 50 }} shadows>
+        <Canvas camera={{ position: [1, 1, 1] }} shadows>
           <Suspense fallback={null}>
             <Scene />
           </Suspense>

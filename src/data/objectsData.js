@@ -1,7 +1,7 @@
 export const INITIAL_BOX_DATA = {
   name: "",
   description: "",
-  position: [0, 0, 0],
+  position: null,
   color: "",
 };
 

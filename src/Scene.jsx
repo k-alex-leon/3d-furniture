@@ -10,7 +10,6 @@ import {
   Selection,
 } from "@react-three/postprocessing";
 import BoxMesh from "./components/models/BoxMesh";
-import { BlendFunction } from "postprocessing";
 import CustomCamera from "./components/CustomCamera";
 import { useStore } from "./hooks/useStore";
 import { boxData } from "./data/objectsData";
@@ -56,15 +55,8 @@ function Scene() {
       {/* MESH OUTLINES */}
       <Selection>
         {/* OUTLINE EFFECTS */}
-        <EffectComposer multisampling={0} autoClear={false}>
-          <Outline
-            blur
-            visibleEdgeColor={0x00ff00}
-            edgeStrength={100}
-            width={500}
-            xRay={true}
-            blendFunction={BlendFunction.ALPHA}
-          />
+        <EffectComposer autoClear={false}>
+          <Outline blur hiddenEdgeColor="white" edgeStrength={100} />
         </EffectComposer>
 
         {/* MODELS */}

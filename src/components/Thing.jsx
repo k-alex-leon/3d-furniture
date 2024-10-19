@@ -10,7 +10,7 @@ export default function Thing(props) {
 //   });
 
   const hoverMesh = (e) => {
-    //console.log(e)
+    // console.log(e)
     mousePosition.x = (e.clientX / window.innerWidth) * 2 - 1;
     mousePosition.y = -(e.clientY / window.innerHeight) * 2 + 1;
     const highlightPos = new THREE.Vector3()
